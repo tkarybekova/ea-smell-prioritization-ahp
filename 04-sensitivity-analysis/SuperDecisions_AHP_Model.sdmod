@@ -1,0 +1,324 @@
+set top_net [getTopNet $net]
+set SAVED_WITH_VERSION {3.2.0 made on Wed, 16 Jan 2019 13:36:28 -0500.  VCRevInfo 3197.  Installed on Windows}
+setDefaultCompareMode $net switch_to_question
+set x 216
+set y 230
+set desc {}
+set name {1Goal}
+set color gainsboro
+set iconUU {}
+set iconFont "myDefaultFontCluster"
+set winFont "myDefaultFontNode"
+set width 300
+set height 200
+set clusterName {1Goal}
+set clusterCompareWord {}
+makeCluster $net $x $y $name $desc
+clusterChangeColor $net $name $color
+setClusterIconUU $net $name $iconUU
+setClusterIconFont $net $name $iconFont
+setClusterTitleFont $net $name $winFont
+setClusterWinSize $net $name $width $height
+setClusterCompareWord $net $name $clusterCompareWord
+deIconizeCluster $net $name
+set name {EA Smell Priorization}
+set desc {}
+set x 0
+set y 0
+set color {#F0F8FF}
+set iconUU {}
+set font {myDefaultFontNode}
+makeNode $net $clusterName $name $desc $x $y
+setNodeIconUU $net $name $iconUU
+setNodeColor $net $name $color
+setNodeFont $net $name $font
+set x 736
+set y 230
+set desc {}
+set name {2Criteria}
+set color gainsboro
+set iconUU {}
+set iconFont "myDefaultFontCluster"
+set winFont "myDefaultFontCluster"
+set width 300
+set height 200
+set clusterName {2Criteria}
+set clusterCompareWord {}
+makeCluster $net $x $y $name $desc
+clusterChangeColor $net $name $color
+setClusterIconUU $net $name $iconUU
+setClusterIconFont $net $name $iconFont
+setClusterTitleFont $net $name $winFont
+setClusterWinSize $net $name $width $height
+setClusterCompareWord $net $name $clusterCompareWord
+deIconizeCluster $net $name
+set name {Impact}
+set desc {}
+set x 0
+set y 0
+set color {#F0F8FF}
+set iconUU {}
+set font {myDefaultFontNode}
+makeNode $net $clusterName $name $desc $x $y
+setNodeIconUU $net $name $iconUU
+setNodeColor $net $name $color
+setNodeFont $net $name $font
+set name {Remediation Effort}
+set desc {}
+set x 0
+set y 35
+set color {#F0F8FF}
+set iconUU {}
+set font {myDefaultFontNode}
+makeNode $net $clusterName $name $desc $x $y
+setNodeIconUU $net $name $iconUU
+setNodeColor $net $name $color
+setNodeFont $net $name $font
+set x 1203
+set y 228
+set desc {}
+set name {3Subcriteria}
+set color gainsboro
+set iconUU {}
+set iconFont "myDefaultFontCluster"
+set winFont "myDefaultFontCluster"
+set width 300
+set height 200
+set clusterName {3Subcriteria}
+set clusterCompareWord {}
+makeCluster $net $x $y $name $desc
+clusterChangeColor $net $name $color
+setClusterIconUU $net $name $iconUU
+setClusterIconFont $net $name $iconFont
+setClusterTitleFont $net $name $winFont
+setClusterWinSize $net $name $width $height
+setClusterCompareWord $net $name $clusterCompareWord
+deIconizeCluster $net $name
+set name {Evolution Constraint}
+set desc {}
+set x 0
+set y 0
+set color {#F0F8FF}
+set iconUU {}
+set font {myDefaultFontNode}
+makeNode $net $clusterName $name $desc $x $y
+setNodeIconUU $net $name $iconUU
+setNodeColor $net $name $color
+setNodeFont $net $name $font
+set name {Gov. & Coord. Overhead}
+set desc {}
+set x 0
+set y 35
+set color {#F0F8FF}
+set iconUU {}
+set font {myDefaultFontNode}
+makeNode $net $clusterName $name $desc $x $y
+setNodeIconUU $net $name $iconUU
+setNodeColor $net $name $color
+setNodeFont $net $name $font
+set name {Op. Reliability Impact}
+set desc {}
+set x 0
+set y 70
+set color {#F0F8FF}
+set iconUU {}
+set font {myDefaultFontNode}
+makeNode $net $clusterName $name $desc $x $y
+setNodeIconUU $net $name $iconUU
+setNodeColor $net $name $color
+setNodeFont $net $name $font
+set name {Restructuring Complexity}
+set desc {}
+set x 0
+set y 105
+set color {#F0F8FF}
+set iconUU {}
+set font {myDefaultFontNode}
+makeNode $net $clusterName $name $desc $x $y
+setNodeIconUU $net $name $iconUU
+setNodeColor $net $name $color
+setNodeFont $net $name $font
+set name {Scope}
+set desc {}
+set x 0
+set y 140
+set color {#F0F8FF}
+set iconUU {}
+set font {myDefaultFontNode}
+makeNode $net $clusterName $name $desc $x $y
+setNodeIconUU $net $name $iconUU
+setNodeColor $net $name $color
+setNodeFont $net $name $font
+set init {1Goal}
+set final {2Criteria}
+connectClusters $net $init $final
+set init {2Criteria}
+set final {3Subcriteria}
+connectClusters $net $init $final
+nodeCompareFinished $net {EA Smell Priorization} {2Criteria} 1
+setNodeCompareWord  $net {EA Smell Priorization} {2Criteria} {important}
+setNodeCompareWord  $net {Impact} {3Subcriteria} {important}
+setNodeCompareWord  $net {Remediation Effort} {3Subcriteria} {important}
+setNetCompareWord $net {important}
+setNetClusterColor $net {gainsboro}
+setNetNodeColor $net {#F0F8FF}
+setNetClusterWinFont $net {myDefaultFontCluster}
+setNetClusterIconFont $net {myDefaultFontCluster}
+setNetNodeFont $net {myDefaultFontNode}
+setFormulaType $net 0
+#Working on net 0
+catch {limitPowerOptions $net 2 0}
+c-network readAllCompares -network $net -source {
+3
+1Goal
+1
+EA Smell Priorization
+2Criteria
+2
+Impact
+Remediation Effort
+3Subcriteria
+5
+Evolution Constraint
+Gov. & Coord. Overhead
+Op. Reliability Impact
+Restructuring Complexity
+Scope
+
+3 1,0 0,1 2,2 
+ 0.000000  1.000000  0.000000 
+ 0.000000  0.000000  0.000000 
+ 1.000000  0.000000  0.000000 
+0
+1 1,0 
+
+1
+1 2,0 
+
+2
+0 
+
+0,0,1
+2 0,0 1,1 
+ 1.000000 
+
+1,0,2
+3 2,0 1,1 0,2 
+ 1.000000  1.000000 
+ 1.000000 
+
+1,1,2
+2 4,0 3,1 
+ 1.000000 
+
+}
+ratings new -network $net -src {
+5
+Scope
+Restructuring Complexity
+Evolution Constraint
+Gov. & Coord. Overhead
+Op. Reliability Impact
+0
+5
+Vendor Lock-in
+Shared Persistency
+Feature Envy
+Cyclic Dependency
+Stovepipe System
+5 5
+3.000000 4.000000 4.000000 4.000000 3.000000 
+4.000000 2.000000 4.000000 3.000000 3.000000 
+2.000000 2.000000 2.000000 1.000000 1.000000 
+3.000000 3.000000 3.000000 2.000000 2.000000 
+3.000000 3.000000 3.000000 2.000000 3.000000 
+5 5
+1 1 1 1 1 
+1 1 1 1 1 
+1 1 1 1 1 
+1 1 1 1 1 
+1 1 1 1 1 
+1
+!DEFAULT_GROUPING!__!_!!______++++_
+5
+1
+2
+3
+4
+5
+15.000000
+ 2.000000  3.000000  5.000000  7.000000  0.000000 
+ 3.000000  5.000000  7.000000  0.000000 
+ 2.000000  5.000000  0.000000 
+ 5.000000  0.000000 
+ 0.000000 
+0
+0
+1
+!DEFAULT_GROUPING!__!_!!______++++_
+5
+1
+2
+3
+4
+5
+15.000000
+ 2.000000  3.000000  5.000000  7.000000  0.000000 
+ 2.000000  5.000000  7.000000  0.000000 
+ 5.000000  5.000000  0.000000 
+ 5.000000  0.000000 
+ 0.000000 
+0
+0
+1
+!DEFAULT_GROUPING!__!_!!______++++_
+5
+1
+2
+3
+4
+5
+15.000000
+ 0.500000  0.333333  0.200000  0.111111  0.000000 
+ 0.333333  0.200000  0.142857  0.000000 
+ 0.200000  0.142857  0.000000 
+ 0.200000  0.000000 
+ 0.000000 
+0
+0
+1
+!DEFAULT_GROUPING!__!_!!______++++_
+5
+1
+2
+3
+4
+5
+15.000000
+ 0.333333  0.200000  0.142857  0.111111  0.000000 
+ 0.333333  0.200000  0.142857  0.000000 
+ 0.200000  0.142857  0.000000 
+ 0.333333  0.000000 
+ 0.000000 
+0
+0
+1
+!DEFAULT_GROUPING!__!_!!______++++_
+5
+1
+2
+3
+4
+5
+15.000000
+ 0.500000  0.200000  0.142857  0.111111  0.000000 
+ 0.333333  0.142857  0.111111  0.000000 
+ 0.200000  0.142857  0.000000 
+ 0.333333  0.000000 
+ 0.000000 
+0
+0
+}
+
+set FORMAT 1
+recreateNetInsideFrameOnly $net
